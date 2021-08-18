@@ -48,8 +48,9 @@ for i in range(10):
         # pass
         sugg = wikipedia.suggest(input_text)
         print(f'\nNo article with the name {input_text} was found. Inputted text is mentioned in the following articles: {sugg}\n')
+        print(f'{error.options}\n')
     except wikipedia.exceptions.PageError as error:
-         pass
+         print(error)
 
 
 # print(cache)
