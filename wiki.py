@@ -5,6 +5,7 @@ class wiki(object):
         self.language = lang
         self.sentence = 4
         self.cache = dict()
+        self.summ = dict()
         
     def run(self):
         for i in range(10):
@@ -19,12 +20,13 @@ class wiki(object):
                         for k in self.cache:
                             if self.input_text in self.cache[k]:
                                 search = k
-                        wiki = self.summary(self.cache[search], sentences=self.sentence)
-                        print(f'fetched from the cache : \n{wiki}\n')
+                            wiki = self.summ[search]
+                            print(f'fetched from the cache : \n{wiki}\n')
                     else:
                         wiki = self.summary(self.input_text, sentences=self.sentence)
                         print(f'{wiki}\n')
                         self.cache[i] = self.input_text
+                        self.summ[i] = wiki
                 else:
                     sugg = self.suggest(self.input_text)
                     print(f'No article with the name {self.input_text} was found. Inputted text is mentioned in the following articles: {sugg}\n')
